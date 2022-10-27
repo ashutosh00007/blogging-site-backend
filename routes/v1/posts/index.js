@@ -20,4 +20,6 @@ postsRouter.put("/update-post", isAuthorized, postsControllers.updatePost);
 
 postsRouter.delete("/delete-post", isAuthorized, postsControllers.deletePost);
 
+postsRouter.post("/add-post-sql", postsControllers.addPostSql);
+
 module.exports = postsRouter;

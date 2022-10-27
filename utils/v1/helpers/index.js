@@ -13,6 +13,7 @@ const responseSenders = {
           message,
         },
       }),
+  isProduction: () => (process.env.ENV === "production" ? true : false),
 };
 
 module.exports = responseSenders;

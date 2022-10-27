@@ -4,6 +4,8 @@ const {
   updatePost,
 } = require("../../../services/v1/jsonPlaceholder");
 
+const { posts } = require("../../../models");
+
 const responseSenders = require("../../../utils/v1/helpers");
 
 const postsControllers = {
@@ -115,6 +117,24 @@ const postsControllers = {
         "posts deleted sucessfully"
       );
     } catch (error) {
+      return responseSenders.resJError(res)();
+    }
+  },
+
+  addPostSql: async (req, res) => {
+    try {
+      const response = await posts.create({ desc: "World", UserId: 1 });
+
+      if (!response) {
+        return responseSenders.resJError(res)("post not added", "400");
+      }
+
+      return responseSenders.resJSuccess(res, 200)(
+        response,
+        "posts added sucessfully"
+      );
+    } catch (error) {
+      console.log(error);
       return responseSenders.resJError(res)();
     }
   },

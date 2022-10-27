@@ -1,5 +1,7 @@
 const express = require("express");
 const expressSesssion = require("express-session");
+require("dotenv").config();
+require("./models");
 const cors = require("cors");
 const passport = require("passport");
 
@@ -17,6 +19,7 @@ app.use(cors());
 app.use(
   expressSesssion({ secret: "secret", resave: true, saveUninitialized: true })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
